@@ -676,14 +676,12 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const createCopyButton = () => {
-            const button = document.createElement("button");
-            button.textContent = "Copy to Clipboard";
-            button.classList.add("copy-btn");
-            return button;
-        };
-
-        cardDetailsContainer.appendChild(createCopyButton());
+        if (data.length > 0) {
+            const copyButton = document.createElement("button");
+            copyButton.textContent = "Copy to Clipboard";
+            copyButton.classList.add("copy-btn");
+            cardDetailsContainer.appendChild(copyButton);
+        }
 
         data.forEach((card, index) => {
             const detailDiv = document.createElement("div");
@@ -697,7 +695,12 @@ document.addEventListener("DOMContentLoaded", () => {
             cardDetailsContainer.appendChild(detailDiv);
         });
 
-        cardDetailsContainer.appendChild(createCopyButton());
+        if (data.length > 0) {
+            const copyButton = document.createElement("button");
+            copyButton.textContent = "Copy to Clipboard";
+            copyButton.classList.add("copy-btn");
+            cardDetailsContainer.appendChild(copyButton);
+        }
     }
 
     function filterData() {
@@ -757,19 +760,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cardDetailsContainer.addEventListener("click", (e) => {
         if (e.target.classList.contains("copy-btn")) {
-            let textToCopy = "";
             const details =
                 cardDetailsContainer.querySelectorAll(".card-detail");
-            details.forEach((detail, index) => {
+            const cardNames = Array.from(details).map(
+                (detail) => detail.dataset.cardName
+            );
+            const searchQuery = cardNames.join(", ");
+
+            let textToCopy = `${searchQuery}\n\n`;
+
+            details.forEach((detail) => {
                 const title = detail.querySelector("h3").textContent.trim();
-                const meaning = detail
-                    .querySelector("p:nth-of-type(1)")
-                    .textContent.trim();
-                const stock = detail
-                    .querySelector("p:nth-of-type(2)")
-                    .textContent.trim();
+                const meaningHTML = detail.querySelector(
+                    "p:nth-of-type(1)"
+                ).innerHTML;
+                const stockHTML = detail.querySelector(
+                    "p:nth-of-type(2)"
+                ).innerHTML;
+
+                const meaning = meaningHTML
+                    .replace(/<strong>(.*?)<\/strong>/g, "**$1**")
+                    .trim();
+                const stock = stockHTML
+                    .replace(/<strong>(.*?)<\/strong>/g, "**$1**")
+                    .trim();
                 textToCopy += `${title}\n${meaning}\n${stock}\n\n`;
             });
+
             navigator.clipboard.writeText(textToCopy.trim()).then(() => {
                 const originalText = e.target.textContent;
                 e.target.textContent = "Copied!";
