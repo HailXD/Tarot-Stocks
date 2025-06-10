@@ -18,7 +18,7 @@ body {
     max-width: 1400px;
     margin: 2rem auto;
     padding: 1rem 2rem;
-    padding-right: 370px;
+    padding-right: 15%;
 }
 
 h1 {
@@ -122,7 +122,7 @@ tbody td:first-child {
     font-weight: 700;
     color: #ffffff;
     font-size: 1.05rem;
-    min-width: 180px;
+    min-width: 15%;
 }
 
 tbody td {
@@ -134,7 +134,7 @@ tbody td {
     position: fixed;
     top: 0;
     right: 0;
-    width: 370px;
+    width: 25%;
     height: 100vh;
     background-color: #1e1e1e;
     border-left: 1px solid #2a2a2a;
