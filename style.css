@@ -130,3 +130,21 @@ tbody td {
     color: #03dac6;
     margin-bottom: 5px;
 }
+.copy-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #03dac6;
+    color: #121212;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.copy-btn:hover {
+    background-color: #018786;
+}

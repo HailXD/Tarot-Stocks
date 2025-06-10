@@ -110,6 +110,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        const createCopyButton = () => {
+            const button = document.createElement('button');
+            button.textContent = 'Copy to Clipboard';
+            button.classList.add('copy-btn');
+            return button;
+        };
+
+        cardDetailsContainer.appendChild(createCopyButton());
+
         data.forEach((card, index) => {
             const detailDiv = document.createElement('div');
             detailDiv.classList.add('card-detail');
@@ -121,6 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             cardDetailsContainer.appendChild(detailDiv);
         });
+
+        cardDetailsContainer.appendChild(createCopyButton());
     }
 
     function filterData() {
@@ -176,6 +187,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     cardDetailsContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('copy-btn')) {
+            let textToCopy = '';
+            const details = cardDetailsContainer.querySelectorAll('.card-detail');
+            details.forEach((detail, index) => {
+                const title = detail.querySelector('h3').textContent.trim();
+                const meaning = detail.querySelector('p:nth-of-type(1)').textContent.trim();
+                const stock = detail.querySelector('p:nth-of-type(2)').textContent.trim();
+                textToCopy += `${title}\n${meaning}\n${stock}\n\n`;
+            });
+            navigator.clipboard.writeText(textToCopy.trim()).then(() => {
+                const originalText = e.target.textContent;
+                e.target.textContent = 'Copied!';
+                setTimeout(() => {
+                    e.target.textContent = originalText;
+                }, 2000);
+            });
+            return;
+        }
+
         const cardDetailDiv = e.target.closest('.card-detail');
         if (!cardDetailDiv) return;
 
@@ -185,7 +215,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const isReversed = h3.textContent.includes('(Reversed)');
 
         if (isReversed) {
-            h3.textContent = h3.textContent.replace(' (Reversed)', '');
+            const originalName = h3.textContent.replace(' (Reversed)', '').split('. ')[1];
+            h3.innerHTML = `${Array.from(cardDetailDiv.parentNode.children).indexOf(cardDetailDiv)}. ${originalName}`;
             cardDetailDiv.querySelector('p:nth-of-type(1)').innerHTML = `<strong>Meaning:</strong> ${card.core}`;
             cardDetailDiv.querySelector('p:nth-of-type(2)').innerHTML = `<strong>Stock:</strong> ${card.interp}`;
         } else {
