@@ -690,7 +690,7 @@ document.addEventListener("DOMContentLoaded", () => {
             detailDiv.classList.add("card-detail");
             detailDiv.dataset.cardName = card.name;
 
-            const isReversed = randomButtonPressed && Math.random() > 0.8;
+            const isReversed = randomButtonPressed && Math.random() > 0.775;
 
             detailDiv.innerHTML = `
                 <h3>${index + 1}. ${card.name}${
