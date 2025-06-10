@@ -122,7 +122,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const cardNameLower = card.name.toLowerCase();
             return searchTerms.some(term => {
                 const termWords = term.split(/\s+/).filter(w => w.length > 0);
-                return termWords.every(word => cardNameLower.includes(word));
+                return termWords.every(word => {
+                    const isRoman = /^[ivx]+$/.test(word);
+                    if (isRoman) {
+                        const regex = new RegExp('\\b' + word + '\\b');
+                        return regex.test(cardNameLower);
+                    } else {
+                        return cardNameLower.includes(word);
+                    }
+                });
             });
         });
 
