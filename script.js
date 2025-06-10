@@ -118,10 +118,20 @@ document.addEventListener('DOMContentLoaded', () => {
              return;
         }
 
-        const filteredData = tarotData.filter(card => {
-            const cardNameLower = card.name.toLowerCase();
-            return searchTerms.some(term => {
+        const filteredData = [];
+        const addedCardNames = new Set();
+
+        searchTerms.forEach(term => {
+            const foundCard = tarotData.find(card => {
+                if (addedCardNames.has(card.name)) {
+                    return false;
+                }
+
+                const cardNameLower = card.name.toLowerCase();
                 const termWords = term.split(/\s+/).filter(w => w.length > 0);
+
+                if (termWords.length === 0) return false;
+
                 return termWords.every(word => {
                     const isRoman = /^[ivx]+$/.test(word);
                     if (isRoman) {
@@ -132,6 +142,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             });
+
+            if (foundCard) {
+                filteredData.push(foundCard);
+                addedCardNames.add(foundCard.name);
+            }
         });
 
         populateTable(filteredData);
