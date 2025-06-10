@@ -120,7 +120,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const filteredData = tarotData.filter(card => {
             const cardNameLower = card.name.toLowerCase();
-            return searchTerms.some(term => cardNameLower.includes(term));
+            return searchTerms.some(term => {
+                const termWords = term.split(/\s+/).filter(w => w.length > 0);
+                return termWords.every(word => cardNameLower.includes(word));
+            });
         });
 
         populateTable(filteredData);
