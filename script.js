@@ -1,98 +1,665 @@
 const tarotData = [
-    { name: "The Fool", core: "Beginnings, innocence, spontaneity, free spirit.", coreRev: "Recklessness, holding back, naivete, risk-aversion.", interp: "A new journey is on the horizon, filled with potential and unknown possibilities. Embrace the spontaneity of the moment and trust your instincts. This is a call to take a leap of faith into a new phase of your life.", interpRev: "You may be acting with disregard for the consequences, or conversely, fear is preventing you from starting something new. Re-evaluate the risks before proceeding. Avoid being taken advantage of due to your innocence." },
-    { name: "The Magician", core: "Manifestation, resourcefulness, power, inspired action.", coreRev: "Manipulation, poor planning, untapped talents, illusion.", interp: "You have all the tools and resources you need to succeed and manifest your desires. It is time to take inspired action and apply your skills with focus and willpower. Your potential for creation is at its peak.", interpRev: "There's a disconnect between your goals and your actions, possibly leading to trickery or wasted potential. Be wary of deception from others or from yourself. Your talents are currently lying dormant and unused." },
-    { name: "The High Priestess", core: "Intuition, sacred knowledge, divine feminine, the subconscious mind.", coreRev: "Secrets, disconnected from intuition, withdrawal, silence.", interp: "Listen to your inner voice and trust the wisdom that comes from within, as your intuition is your greatest guide now. There are hidden truths and spiritual insights available if you are willing to look beyond the obvious. This card encourages a period of quiet contemplation.", interpRev: "You are ignoring your intuition, leading to confusion and poor judgment. Secrets may be kept from you, or you might be withholding information from others. It's time to reconnect with your inner self." },
-    { name: "The Empress", core: "Femininity, beauty, nature, nurturing, abundance.", coreRev: "Creative block, dependence on others, smothering, emptiness.", interp: "This card represents a period of creativity, fertility, and abundance in your life. It is time to nurture yourself, your ideas, and your relationships. Connect with nature and embrace the beauty surrounding you.", interpRev: "A creative or emotional block is hindering your growth, or you might be overly dependent on others for validation. Be mindful of smothering those you care for. You may feel a sense of lack or disconnection from your nurturing side." },
-    { name: "The Emperor", core: "Authority, establishment, structure, a father figure.", coreRev: "Domination, excessive control, rigidity, lack of discipline.", interp: "You are being called to step into a leadership role and bring structure and order to a situation. By creating solid foundations and being disciplined, you can achieve your goals. This card represents stability and strategic thinking.", interpRev: "Your desire for control has become tyrannical, or you are struggling with a lack of self-control and discipline. A rigid approach is stifling creativity and progress. You may be clashing with an authority figure." },
-    { name: "The Hierophant", core: "Spiritual wisdom, religious beliefs, conformity, tradition, institutions.", coreRev: "Personal beliefs, freedom, challenging the status quo, restriction.", interp: "This is a time for embracing tradition and seeking knowledge from established institutions or a trusted mentor. Following a conventional path can provide valuable structure and spiritual guidance. Conforming to group norms may be beneficial right now.", interpRev: "You are questioning traditions and forging your own path, which can be liberating but also isolating. Be wary of rigid dogma and challenge established rules that no longer serve you. This is a call for spiritual and personal freedom." },
-    { name: "The Lovers", core: "Love, harmony, relationships, values alignment, choices.", coreRev: "Disharmony, imbalance, misalignment of values, conflict.", interp: "A significant choice regarding a relationship or a deep personal value is before you. This card signifies a beautiful, harmonious connection and the importance of open communication. Your decisions should be based on your authentic self.", interpRev: "You are facing conflict and disharmony in your relationships due to a misalignment of values. A poor choice has led to negative consequences. Re-evaluate your connections and what you truly stand for." },
-    { name: "The Chariot", core: "Control, willpower, victory, assertion, determination.", coreRev: "Lack of control, lack of direction, aggression, obstacles.", interp: "With determination and focused willpower, you will overcome challenges and achieve victory. You must assert yourself and take control of the opposing forces in your life. This is a time for decisive action and moving forward with confidence.", interpRev: "You are feeling powerless and without direction, as obstacles block your path. Your efforts are scattered and ineffective, or you are being overly aggressive. Regain your focus before you proceed." },
-    { name: "Strength", core: "Strength, courage, patience, control, compassion.", coreRev: "Weakness, self-doubt, lack of self-control, raw emotion.", interp: "True strength comes not from force, but from courage, compassion, and patience. You have the inner fortitude to gently tame the challenges you face. This card encourages a soft touch and quiet confidence.", interpRev: "Self-doubt and fear are undermining your confidence and causing you to feel weak. You may be acting on raw, uncontrolled emotions. It's time to reconnect with your inner courage and find your power again." },
-    { name: "The Hermit", core: "Soul-searching, introspection, being alone, inner guidance.", coreRev: "Isolation, loneliness, withdrawal, paranoia.", interp: "It is time to retreat from the outside world for a period of introspection and soul-searching. By turning inward, you will find the answers and inner guidance you seek. This journey of self-discovery is a necessary part of your path.", interpRev: "You have withdrawn too much, leading to feelings of loneliness and isolation. Be careful not to become a recluse. You may be rejecting help or guidance from others out of fear." },
-    { name: "The Wheel of Fortune", core: "Good luck, karma, life cycles, destiny, a turning point.", coreRev: "Bad luck, resistance to change, breaking cycles, unforeseen setbacks.", interp: "A significant turning point is here, as the wheel of fate spins in your favor. This card signifies change, luck, and the cyclical nature of life. Embrace the new opportunities that are coming your way.", interpRev: "You are experiencing a period of bad luck or facing unexpected setbacks. You may be resisting a necessary change, which is only making things harder. It's time to accept that some things are outside your control." },
-    { name: "Justice", core: "Justice, fairness, truth, cause and effect, law.", coreRev: "Unfairness, lack of accountability, dishonesty, karmic retribution.", interp: "The truth will be revealed, and fairness will prevail. Your actions have consequences, and this card signifies that you will receive what you deserve. Make decisions with clarity, impartiality, and integrity.", interpRev: "You are experiencing an injustice or are being dishonest with yourself or others. A lack of accountability is causing problems. Be prepared to face the karmic consequences of your past actions." },
-    { name: "The Hanged Man", core: "Pause, surrender, letting go, new perspectives.", coreRev: "Delays, resistance, stalling, indecision, sacrifice.", interp: "You are being called to pause and see things from a new perspective. By surrendering control and letting go, you will gain valuable insight. This is a time for reflection, not action.", interpRev: "You are resisting a necessary pause, causing stagnation and delays. Your refusal to let go is preventing progress. Indecision is holding you in a state of limbo." },
-    { name: "Death", core: "Endings, change, transformation, transition.", coreRev: "Resistance to change, personal transformation, inner purging, stagnation.", interp: "A major phase of your life is ending, making way for something new. This card signifies transformation and the necessity of letting go of the past. Embrace this powerful change as it is essential for your growth.", interpRev: "You are resisting an inevitable ending, which is causing you pain and preventing your personal growth. You must let go of what no longer serves you to move forward. Stagnation is the result of clinging to the past." },
-    { name: "Temperance", core: "Balance, moderation, patience, finding meaning.", coreRev: "Imbalance, excess, self-healing, re-alignment.", interp: "This card represents the need for balance, patience, and moderation in your life. By blending different elements and finding a middle path, you will achieve harmony and peace. You are being guided to find your inner calm.", interpRev: "Your life is out of balance due to excess and a lack of moderation. This is a time for self-healing and re-aligning your priorities. You need to take a step back and find your center." },
-    { name: "The Devil", core: "Addiction, materialism, playfulness, negative patterns.", coreRev: "Breaking free, release, restoring control, detachment.", interp: "You are feeling trapped by addiction, materialism, or negative thought patterns. This card highlights the chains of your own making that limit your freedom. Acknowledge these bonds in order to address them.", interpRev: "You are on the verge of breaking free from a long-standing addiction or a restrictive situation. This is a powerful time of release and reclaiming your personal power. You are beginning to see the path to freedom." },
-    { name: "The Tower", core: "Sudden change, upheaval, chaos, revelation, awakening.", coreRev: "Personal transformation, fear of change, averting disaster, resistance.", interp: "A sudden, dramatic upheaval is set to destroy a false reality you have built. While chaotic and unsettling, this destruction makes way for the truth and a new foundation. This is a necessary awakening.", interpRev: "You are resisting a massive change, but the longer you hold on, the more painful it will be. You may have narrowly avoided a disaster, but the underlying issues remain. It's time to tear down your own walls." },
-    { name: "The Star", core: "Hope, faith, purpose, renewal, spirituality.", coreRev: "Lack of faith, despair, self-trust, disconnection.", interp: "After a period of turmoil, this card brings a sense of hope, healing, and renewal. You are on the right path and should have faith in the future. This is a time for spiritual connection and calm reassurance.", interpRev: "You have lost hope and are feeling disconnected from your purpose, leading to despair. It is crucial to find a way to trust in yourself and the universe again. You are not as lost as you feel." },
-    { name: "The Moon", core: "Illusion, fear, anxiety, subconscious, intuition.", coreRev: "Release of fear, repressed emotion, inner confusion, clarity.", interp: "Things are not as they seem; you are navigating a world of illusion and uncertainty. Your fears and anxieties may be heightened, fueled by your subconscious mind. Trust your intuition to guide you through this confusing time.", interpRev: "You are beginning to release your fears and see through illusions, bringing newfound clarity. Repressed emotions are coming to the surface to be dealt with. The confusion is starting to lift." },
-    { name: "The Sun", core: "Positivity, fun, warmth, success, vitality.", coreRev: "Inner child, feeling down, overly optimistic, lack of success.", interp: "This card radiates success, joy, and vitality, promising a period of happiness and clarity. Embrace the warmth and positivity that surrounds you. Your enthusiasm is contagious and will lead to great achievements.", interpRev: "Your optimism may be misplaced, or you are feeling temporarily blocked from joy. It's important to reconnect with your inner child and find simple pleasures. Success may be delayed but not denied." },
-    { name: "Judgement", core: "Judgement, rebirth, inner calling, absolution.", coreRev: "Self-doubt, inner critic, ignoring the call, fear of judgement.", interp: "You are at a crossroads, and a significant life decision is upon you, representing a form of rebirth. Listen to your inner calling and rise to a new level of consciousness. This is a time for absolution and self-evaluation.", interpRev: "You are plagued by self-doubt and an overly critical inner voice, preventing you from making a necessary change. You are ignoring your true calling out of fear. You must forgive yourself to move forward." },
-    { name: "The World", core: "Completion, integration, accomplishment, travel.", coreRev: "Seeking personal closure, short-cuts, delays, lack of completion.", interp: "You have successfully completed a major life cycle and are celebrating your accomplishments. This card represents a sense of wholeness, integration, and fulfillment. The world is open to you for new adventures.", interpRev: "You have not fully completed what you started, leaving you with a sense of emptiness. You may have taken shortcuts or are experiencing delays. It's time to tie up loose ends for true closure." },
-    { name: "Ace of Cups", core: "New love, compassion, creativity, overwhelming emotion.", coreRev: "Blocked or repressed emotions, emotional loss, emptiness.", interp: "A new wave of emotion, creativity, and love is flowing into your life. This is the beginning of a new relationship or a deeper connection with your feelings. Open your heart to the possibilities.", interpRev: "You are blocking your emotions or have recently suffered an emotional setback. There may be a creative block or a feeling of being emotionally unfulfilled. It's time to explore why your cup feels empty." },
-    { name: "II of Cups", core: "Unified love, partnership, mutual attraction, connection.", coreRev: "Break-up, disharmony, distrust, imbalance in relationship.", interp: "This card represents a deep connection and partnership based on mutual respect and attraction. It signifies the beginning of a beautiful relationship or the strengthening of an existing one. Harmony and shared values are key.", interpRev: "A relationship is suffering from distrust, imbalance, or outright conflict. There is a fundamental disharmony that needs to be addressed. This could signify a difficult break-up or a partnership falling apart." },
-    { name: "III of Cups", core: "Celebration, friendship, creativity, community.", coreRev: "An affair, gossip, isolation, 'three's a crowd'.", interp: "It's time to celebrate with your friends and community. This card signifies happy gatherings, successful collaborations, and the joy of shared experiences. Your social life is a source of great happiness.", interpRev: "Social interactions are strained, possibly due to gossip or someone feeling left out. There may be an unhealthy dynamic, such as an affair, disrupting the harmony. You may feel isolated from your group." },
-    { name: "IV of Cups", core: "Meditation, contemplation, apathy, re-evaluation.", coreRev: "Retreat, withdrawal, checking in for alignment, boredom.", interp: "You are being offered new opportunities, but you are too apathetic or distracted to notice them. This is a time for contemplation and re-evaluating what truly makes you happy. Don't let good things pass you by.", interpRev: "After a period of apathy, you are beginning to emerge from your shell and take interest in the world again. You have withdrawn to realign with your true desires. Boredom is giving way to new possibilities." },
-    { name: "V of Cups", core: "Regret, failure, disappointment, pessimism.", coreRev: "Personal setbacks, self-forgiveness, moving on.", interp: "You are focused on past losses and disappointments, unable to see the positive things that still remain. While it's okay to grieve, this card warns against dwelling in regret. It's time to see the cups that are still full.", interpRev: "You are beginning to forgive yourself and others for past mistakes, allowing you to move on. You've accepted your losses and are now ready to see the opportunities ahead. Healing from regret is possible." },
-    { name: "VI of Cups", core: "Revisiting the past, childhood memories, innocence, joy.", coreRev: "Living in the past, forgiveness, lacking playfulness.", interp: "This card brings a sense of nostalgia and the joy of simple, innocent pleasures. You may be reconnecting with people or memories from your past. It's a time to embrace your inner child.", interpRev: "You are stuck living in the past, unable to move forward into the future. It may be time to forgive past hurts to release their hold on you. You've lost touch with your playful, joyful side." },
-    { name: "VII of Cups", core: "Opportunities, choices, wishful thinking, illusion.", coreRev: "Alignment, personal values, overwhelming choices, clarity.", interp: "You are faced with many choices and opportunities, but some may be illusions or wishful thinking. You must look beyond the surface to make a wise decision. Be careful not to get lost in daydreams.", interpRev: "The illusion is fading, and you are gaining clarity on what you truly want. You are aligning your choices with your core values. The overwhelming number of options is narrowing down to a clear path." },
-    { name: "VIII of Cups", core: "Disappointment, abandonment, withdrawal, escapism.", coreRev: "Trying one more time, indecision, aimless drifting.", interp: "You are walking away from a situation that no longer emotionally fulfills you. While it's difficult, you know it's necessary for your personal growth. This is a journey of seeking deeper meaning.", interpRev: "You are hesitating to leave a disappointing situation, wondering if you should give it one more try. This indecision is causing you to drift aimlessly. You must decide whether to stay or go." },
-    { name: "IX of Cups", core: "Contentment, satisfaction, gratitude, wish come true.", coreRev: "Smugness, dissatisfaction, materialism, unfulfilled wishes.", interp: "This is the 'wish' card, signifying that your desires are coming to fruition. You are feeling a deep sense of contentment, satisfaction, and gratitude for your blessings. Enjoy this period of emotional and material well-being.", interpRev: "You are feeling dissatisfied, despite having much to be grateful for. Your wishes have not been fulfilled, or you are acting with smugness and materialism. True contentment comes from within, not from possessions." },
-    { name: "X of Cups", core: "Divine love, blissful relationships, harmony, alignment.", coreRev: "Disconnectedness, misaligned values, struggling relationships.", interp: "This card represents ultimate emotional fulfillment, harmonious family life, and blissful relationships. You are aligned with your values and experiencing true, divine love. This is a picture of 'happily ever after'.", interpRev: "Your family or relationships are experiencing conflict and disconnection. There is a misalignment of values causing struggles and unhappiness. The picture-perfect ideal is not matching your reality." },
-    { name: "Page of Cups", core: "Creative opportunities, intuitive messages, curiosity, possibility.", coreRev: "New ideas, doubting intuition, creative blocks, emotional immaturity.", interp: "Be open to creative opportunities and intuitive messages that come your way. This card signals a time of curiosity and exploring your emotions. A new, heartfelt message may be on its way.", interpRev: "You are experiencing a creative block or are doubting your own intuition. Emotional immaturity may be causing problems in your relationships. It's time to listen to your heart, even if you feel insecure." },
-    { name: "Knight of Cups", core: "Creativity, romance, charm, imagination, beauty.", coreRev: "Overactive imagination, unrealistic, jealousy, moodiness.", interp: "A charming and romantic person or offer is entering your life. This is a time for following your heart and expressing your creative impulses. Let yourself be swept away by beauty and imagination.", interpRev: "You are being unrealistic or getting lost in fantasy. Moodiness and jealousy may be creating emotional turmoil. An offer that seems too good to be true probably is." },
-    { name: "Queen of Cups", core: "Compassionate, caring, emotionally stable, intuitive, in flow.", coreRev: "Emotional insecurity, co-dependency, martyrdom, manipulation.", interp: "You are in touch with your emotions and intuition, acting with compassion and care for others. You are emotionally balanced and a source of comfort for those around you. Trust your heart, for it is a reliable guide.", interpRev: "You are feeling emotionally insecure or are becoming co-dependent in your relationships. Be careful not to play the martyr or manipulate others with your emotions. It's time to set healthy emotional boundaries." },
-    { name: "King of Cups", core: "Emotionally balanced, compassionate, diplomatic, in control.", coreRev: "Emotional manipulation, moodiness, volatility, selfishness.", interp: "You have mastered your emotions and can navigate any situation with compassion and diplomacy. You are a pillar of emotional strength and stability for others. Your wisdom comes from a perfect balance of heart and mind.", interpRev: "Someone, perhaps you, is using emotional manipulation to control a situation. Moodiness and emotional volatility are causing instability. There is a disconnect between expressed feelings and true intentions." },
-    { name: "Ace of Swords", core: "Breakthroughs, new ideas, mental clarity, truth.", coreRev: "Confusion, lack of clarity, misinformation, clouded judgment.", interp: "A powerful breakthrough is cutting through confusion, bringing you mental clarity and a new way of thinking. This is a moment of pure truth and intellectual power. Seize this new understanding and use it to your advantage.", interpRev: "You are experiencing confusion and a lack of mental clarity. Misinformation or clouded judgment is preventing you from seeing the truth. It's important to think carefully before making a decision." },
-    { name: "II of Swords", core: "Difficult choices, indecision, stalemate, blocked emotions.", coreRev: "Indecision, confusion, information overload, emotional turmoil.", interp: "You are facing a difficult choice and are at a stalemate, unable to move forward. You may be blocking your emotions to avoid the truth of the situation. A truce has been called, but the underlying conflict remains.", interpRev: "The stalemate is breaking, but it is leading to more confusion and emotional turmoil. You are overwhelmed with information and cannot make a clear decision. It's time to remove the blindfold and face your feelings." },
-    { name: "III of Swords", core: "Heartbreak, emotional pain, sorrow, grief, hurt.", coreRev: "Negative self-talk, releasing pain, optimism, forgiveness.", interp: "This card signifies a painful truth that leads to heartbreak, sorrow, and grief. While deeply painful, this clarity is necessary for healing to begin. Acknowledge your pain to move through it.", interpRev: "You are beginning to recover from a painful experience, releasing the sorrow and forgiving those involved. Be wary of negative self-talk that prolongs the hurt. The worst of the pain is behind you now." },
-    { name: "IV of Swords", core: "Rest, relaxation, meditation, contemplation, recuperation.", coreRev: "Exhaustion, burn-out, deep contemplation, stagnation.", interp: "It is time to rest, recuperate, and recharge your mental batteries. This card calls for a period of peace and quiet contemplation after a period of stress. Stepping back will give you the clarity you need.", interpRev: "You have pushed yourself to the point of exhaustion and burnout. A lack of rest is leading to stagnation and poor mental health. You must take a break before you collapse." },
-    { name: "V of Swords", core: "Conflict, competition, defeat, winning at all costs.", coreRev: "Reconciliation, making amends, past resentment, remorse.", interp: "This card signifies a conflict where victory comes at a great cost, leaving a bitter taste. You may have won the battle but lost the war, creating resentment and damaged relationships. There are no true winners here.", interpRev: "You are seeking reconciliation and are ready to make amends after a painful conflict. Releasing past resentments is key to moving forward. There is remorse for the hurt that has been caused." },
-    { name: "VI of Swords", core: "Transition, change, rite of passage, releasing baggage.", coreRev: "Personal transition, resistance to change, unfinished business.", interp: "You are moving away from a difficult past into a calmer, more hopeful future. This is a necessary transition, even if it is accompanied by sadness. You are leaving your troubles behind.", interpRev: "You are resisting a necessary transition, clinging to the past and its baggage. There is unfinished business that is preventing you from moving on. The journey ahead feels uncertain and difficult." },
-    { name: "VII of Swords", core: "Betrayal, deception, getting away with something, stealth.", coreRev: "Imposter syndrome, deceiving yourself, keeping secrets.", interp: "This card warns of deception, betrayal, or trying to get away with something dishonestly. Someone may be acting behind your back, or you may be the one acting with stealth. This path is risky and often leads to isolation.", interpRev: "You are deceiving yourself about a situation or are suffering from imposter syndrome. Keeping secrets is taking a toll on your mental health. It's time to come clean and be honest with yourself and others." },
-    { name: "VIII of Swords", core: "Negative thoughts, self-imposed restriction, imprisonment, victim mentality.", coreRev: "Self-belief, new perspectives, release, freedom.", interp: "You feel trapped and powerless, but the restrictions are self-imposed by your own negative thoughts and beliefs. You have the power to free yourself by changing your perspective. You are not as helpless as you think.", interpRev: "You are beginning to challenge your limiting beliefs and see a way out of your perceived prison. A new perspective is bringing you a sense of freedom and release. You are reclaiming your power." },
-    { name: "IX of Swords", core: "Anxiety, worry, fear, depression, nightmares.", coreRev: "Inner turmoil, deep-seated fears, secrets, releasing worry.", interp: "This card is the 'nightmare' card, representing deep anxiety, fear, and worry that keeps you up at night. These fears are often exaggerated by your mind. It is time to seek help and talk about what is troubling you.", interpRev: "You are beginning to confront the deep-seated fears that have been tormenting you. Releasing these worries is a difficult but necessary process. The darkest hour is just before the dawn." },
-    { name: "X of Swords", core: "Painful endings, deep wounds, betrayal, loss, crisis.", coreRev: "Recovery, regeneration, resisting an end, forgiveness.", interp: "You have hit rock bottom after a painful ending or betrayal. While this is a moment of crisis and deep wounds, it also signifies that the worst is over. There is nowhere to go but up from here.", interpRev: "The process of recovery and regeneration has begun after a devastating loss. You are slowly healing from your wounds. However, resisting this ending will only prolong the pain." },
-    { name: "Page of Swords", core: "New ideas, curiosity, thirst for knowledge, new ways of communicating.", coreRev: "Self-expression, all talk and no action, haste, misinformation.", interp: "You are full of new ideas and a thirst for knowledge. This card encourages you to ask questions, learn new things, and communicate your thoughts with energy and enthusiasm. Be curious and explore your intellectual world.", interpRev: "You may be all talk and no action, or you are spreading misinformation without fact-checking. Your haste in communication could lead to misunderstandings. It's time to think before you speak." },
-    { name: "Knight of Swords", core: "Ambitious, action-oriented, fast-thinking, direct.", coreRev: "Restless, unfocused, impulsive, burn-out, aggressive.", interp: "This Knight is on a mission, charging forward with ambition and intellectual clarity. It's time for swift, decisive action based on a well-thought-out plan. Be direct and assertive in pursuing your goals.", interpRev: "Your energy is scattered and unfocused, leading to impulsive and reckless actions. You are charging ahead without a clear plan, which could lead to burnout. Your directness may be perceived as aggression." },
-    { name: "Queen of Swords", core: "Independent, unbiased judgement, clear boundaries, direct communication.", coreRev: "Overly-emotional, easily influenced, bitchy, cold-hearted.", interp: "You possess sharp intellect and can make unbiased judgments based on facts. This card represents independence, clear boundaries, and direct, honest communication. You use your wisdom to cut through the noise and find the truth.", interpRev: "Your judgment is clouded by emotion, or you are being cold-hearted and cruel with your words. You may be easily influenced by others' opinions. It's important to find the balance between head and heart." },
-    { name: "King of Swords", core: "Mental clarity, intellectual power, authority, truth.", coreRev: "Quiet power, inner truth, misuse of power, manipulation.", interp: "You are an authority figure who rules with intellectual power and clarity. Your decisions are based on logic, truth, and ethical judgment. You are a master of thought and communication, commanding respect.", interpRev: "You are misusing your intellectual power for manipulation or selfish gain. Your words may be cutting and tyrannical. It is time to reconnect with your inner truth and use your authority wisely." },
-    { name: "Ace of Wands", core: "Inspiration, new opportunities, growth, potential.", coreRev: "An emerging idea, lack of direction, delays, hesitation.", interp: "A spark of inspiration has arrived, bringing with it a new opportunity for growth and creativity. This is a moment of pure potential, a call to action. Seize this new passion and run with it.", interpRev: "You have a new idea, but you are hesitating to act on it due to a lack of direction or delays. Your passion is being stifled. It's time to overcome your hesitation and give your idea a chance to grow." },
-    { name: "II of Wands", core: "Future planning, progress, decisions, discovery.", coreRev: "Fear of unknown, lack of planning, personal goals.", interp: "You have made progress and are now planning your next steps. This card is about looking to the future and making bold decisions about your path. You are expanding your horizons and discovering new worlds.", interpRev: "Fear of the unknown is preventing you from moving forward with your plans. A lack of planning is holding you back. It's time to focus on your personal goals and take that first step." },
-    { name: "III of Wands", core: "Progress, expansion, foresight, overseas opportunities.", coreRev: "Playing small, lack of foresight, unexpected delays.", interp: "Your plans are in motion, and you are starting to see the first signs of success. This card encourages you to think bigger and look for opportunities for expansion, possibly overseas. Your foresight is paying off.", interpRev: "You are playing small and not living up to your full potential. Unexpected delays or a lack of foresight are frustrating your progress. It's time to think about long-term growth." },
-    { name: "IV of Wands", core: "Celebration, joy, harmony, relaxation, homecoming.", coreRev: "Personal celebration, inner harmony, conflict with others.", interp: "This card signifies a time of joyful celebration, harmony, and stability, often related to a happy home or a significant milestone. It's a time to relax and enjoy the fruits of your labor with loved ones. Welcome home.", interpRev: "There is a lack of harmony in your home or community, possibly due to conflict. You may be celebrating a personal achievement alone. It's important to find your own inner sense of stability and peace." },
-    { name: "V of Wands", core: "Conflict, disagreements, competition, tension.", coreRev: "Conflict avoidance, diversity, releasing tension.", interp: "You are in the midst of conflict, competition, and disagreements. While there is tension, it's not necessarily destructive; it can be a source of creative energy and growth. It's time to voice your opinion and stand up for your ideas.", interpRev: "You are avoiding a necessary conflict, which is only making the tension worse. It's time to find a way to work with diverse opinions rather than against them. Releasing this tension is crucial for progress." },
-    { name: "VI of Wands", core: "Public recognition, victory, success, self-confidence.", coreRev: "Private achievement, fall from grace, egotism.", interp: "You have achieved a significant victory and are receiving public recognition for your efforts. This is a moment of success, pride, and well-deserved acclaim. Your self-confidence is at a high point.", interpRev: "Your success has not been publicly acknowledged, or you are celebrating a private victory. Be wary of egotism and a potential fall from grace. True confidence comes from within, not from external praise." },
-    { name: "VII of Wands", core: "Challenge, competition, perseverance, standing up for beliefs.", coreRev: "Giving up, overwhelmed, overly defensive, yielding.", interp: "You are being challenged, but you are in a position of strength. It is time to stand your ground, defend your beliefs, and persevere against the competition. Don't back down from this fight.", interpRev: "You are feeling overwhelmed and are on the verge of giving up. You may be overly defensive or are yielding your position too easily. It's time to re-evaluate your strategy and find your courage." },
-    { name: "VIII of Wands", core: "Rapid action, movement, quick decisions, air travel.", coreRev: "Delays, frustration, resisting change, slowing down.", interp: "Things are moving forward at a rapid pace. This card signifies swift action, important news, and perhaps even travel. Be prepared to make quick decisions and go with the flow of this powerful energy.", interpRev: "You are experiencing frustrating delays and obstacles. You may be resisting a necessary change, which is only slowing things down. It's time to be patient and wait for the right moment to act." },
-    { name: "IX of Wands", core: "Resilience, courage, persistence, test of faith, boundaries.", coreRev: "Inner resources, struggle, overwhelm, defensive, paranoia.", interp: "You have been through many battles and are weary, but you still have the resilience to face one final challenge. This is a test of your faith and courage. Guard your boundaries and don't give up now; you are so close to the finish line.", interpRev: "You are feeling overwhelmed and on the verge of collapse, struggling to find the strength to continue. Your defensiveness may be bordering on paranoia. You must dig deep and tap into your inner resources." },
-    { name: "X of Wands", core: "Burden, extra responsibility, hard work, stress, completion.", coreRev: "Delegating, release, carrying the burden, letting go.", interp: "You have taken on too much responsibility and are carrying a heavy burden. While this signifies the completion of a cycle, it comes with a great deal of stress and hard work. You are nearing the end of this difficult task.", interpRev: "You are learning to delegate and release the burdens you've been carrying. It's time to let go of responsibilities that are not yours. Acknowledging that you can't do it all is the first step to relief." },
-    { name: "Page of Wands", core: "Enthusiasm, exploration, discovery, free spirit.", coreRev: "Lack of direction, procrastination, creating conflict.", interp: "A free-spirited energy of enthusiasm and exploration is here. This card encourages you to discover new passions and embrace your creative spark. Be open to new adventures and a sense of wonder.", interpRev: "You are full of creative energy but lack the direction to use it effectively, leading to procrastination. You might be stirring up conflict out of boredom. It's time to find a focus for your passion." },
-    { name: "Knight of Wands", core: "Energy, passion, lust, action, adventure, impulsiveness.", coreRev: "Haste, scattered energy, frustration, delays.", interp: "This Knight brings a wave of passionate energy, action, and adventure. It's time to pursue your goals with vigor and enthusiasm, but be mindful of impulsiveness. A journey or a bold move is on the horizon.", interpRev: "Your impulsive energy is scattered, leading to frustration and delays. You are acting with haste and without a clear plan. It's time to slow down and channel your passion more effectively." },
-    { name: "Queen of Wands", core: "Courage, confidence, independence, social butterfly, determination.", coreRev: "Self-respect, self-confidence, introverted, a burnout.", interp: "You are a confident, courageous, and determined leader with a vibrant social energy. This Queen encourages you to be independent and shine your light brightly. Your passion and optimism are inspiring to others.", interpRev: "You are feeling insecure or have lost your confidence, perhaps due to burnout. It may be a time for introversion and focusing on rebuilding your self-respect. Your inner fire needs to be rekindled." },
-    { name: "King of Wands", core: "Natural-born leader, vision, entrepreneur, honour.", coreRev: "Impulsiveness, haste, ruthless, high expectations.", interp: "You are a visionary leader who inspires others to follow your lead. This King has the creativity and determination to turn his vision into reality. It is time to take charge and lead with honour and passion.", interpRev: "Your leadership has become ruthless, or your high expectations are unrealistic. Impulsive and hasty decisions are leading to poor outcomes. You must lead with more consideration and less force." },
-    { name: "Ace of Pentacles", core: "New financial or career opportunity, manifestation, prosperity.", coreRev: "Lost opportunity, lack of planning, greed, missed chance.", interp: "A seed of prosperity has been planted, offering a new opportunity for financial growth or career advancement. This is a time for manifestation and building a secure future. Ground your ambitions in reality to make them flourish.", interpRev: "You have missed a valuable opportunity due to a lack of planning or foresight. Be wary of making decisions based on greed. It is not too late to create a new plan for future success." },
-    { name: "II of Pentacles", core: "Multiple priorities, time management, adaptability, balance.", coreRev: "Over-committed, disorganisation, reprioritising.", interp: "You are juggling multiple priorities and need to manage your time and resources effectively. This card calls for adaptability and finding balance in a busy life. Stay flexible to keep all your plates spinning.", interpRev: "You are over-committed and feeling disorganized, causing you to drop the ball. It's time to re-prioritize and focus on what is truly important. You cannot do everything at once." },
-    { name: "III of Pentacles", core: "Teamwork, collaboration, learning, implementation.", coreRev: "Disharmony, misalignment, working alone, lack of collaboration.", interp: "This card signifies successful collaboration and teamwork. By combining your skills with others, you can create something of high quality and lasting value. It is also a time for learning and honing your craft.", interpRev: "There is disharmony and a lack of collaboration within your team, hindering progress. You may feel that you have to do everything yourself. Misalignment of goals is causing friction." },
-    { name: "IV of Pentacles", core: "Saving money, security, control, conservatism, scarcity mindset.", coreRev: "Over-spending, greed, self-protection, releasing control.", interp: "You are holding on tightly to your resources out of a need for security and control. While saving is wise, be careful of a scarcity mindset that prevents you from enjoying your wealth. You may be too resistant to change.", interpRev: "You are releasing your tight grip on control, which can be both liberating and terrifying. This may manifest as over-spending or generosity after a period of conservation. Letting go is a necessary step for growth." },
-    { name: "V of Pentacles", core: "Financial loss, poverty, isolation, worry, insecurity.", coreRev: "Recovery from financial loss, spiritual poverty.", interp: "You are experiencing a period of financial hardship, worry, and isolation. You feel left out in the cold, but help is often closer than you think. Don't be afraid to ask for support during this difficult time.", interpRev: "You are beginning to recover from a period of financial loss and instability. The worst is behind you, and you are finding your way back to security. This card can also point to a poverty of spirit that needs healing." },
-    { name: "VI of Pentacles", core: "Giving, receiving, sharing wealth, generosity, charity.", coreRev: "Self-care, unpaid debts, one-sided charity, strings attached.", interp: "This card represents a harmonious flow of giving and receiving. It can signify receiving a gift or being in a position to be generous with others. Charity and sharing your wealth will bring balance.", interpRev: "The balance of giving and receiving is off. You may be giving too much, or a gift may come with strings attached. Be wary of unpaid debts, both financial and emotional." },
-    { name: "VII of Pentacles", core: "Long-term view, sustainable results, perseverance, investment.", coreRev: "Lack of long-term vision, limited success or reward.", interp: "You are taking a moment to assess the progress of your long-term investments. Your hard work is beginning to pay off, but patience is still required. Continue to persevere, for sustainable results are on the horizon.", interpRev: "Your investments are not yielding the results you hoped for, perhaps due to a lack of a long-term vision. You may be frustrated with limited success. It's time to re-evaluate your strategy for the future." },
-    { name: "VIII of Pentacles", core: "Apprenticeship, repetitive tasks, mastery, skill development.", coreRev: "Self-development, perfectionism, misdirected activity.", interp: "You are diligently working on developing your skills and mastering your craft. This card celebrates the focus and dedication required to become an expert. Your hard work and attention to detail will lead to high-quality results.", interpRev: "You are working hard, but your efforts may be misdirected. Perfectionism could be hindering your progress rather than helping it. It's a good time to focus on your own self-development." },
-    { name: "IX of Pentacles", core: "Abundance, luxury, self-sufficiency, financial independence.", coreRev: "Self-worth, over-working, financial dependency.", interp: "You have worked hard to achieve a level of financial independence and can now enjoy the fruits of your labor. This card signifies luxury, self-sufficiency, and enjoying the finer things in life. You have earned this abundance.", interpRev: "You may be working so hard that you have no time to enjoy your success, or you may be financially dependent on others. Your sense of self-worth is not tied to your financial status. Find a healthier work-life balance." },
-    { name: "X of Pentacles", core: "Wealth, financial security, family, long-term success, contribution.", coreRev: "Financial failure or loss, loneliness, instability.", interp: "This card represents the ultimate in long-term success, financial security, and a lasting legacy. You have built something of enduring value for your family and community. Your wealth is not just material but also relational.", interpRev: "You are facing financial instability or the loss of a family legacy. There is a breakdown in the long-term structures you relied upon. This may be a time of loneliness and insecurity." },
-    { name: "Page of Pentacles", core: "Manifestation, financial opportunity, skill development.", coreRev: "Lack of progress, procrastination, learn from failure.", interp: "A new opportunity to manifest your goals in the material world is presenting itself. This card encourages you to be diligent and grounded in your approach to learning new skills. Your ambition is a seed ready to be planted.", interpRev: "You are experiencing a lack of progress due to procrastination or a fear of failure. It is important to learn from your mistakes and not let them stop you. A new plan is needed to get things moving." },
-    { name: "Knight of Pentacles", core: "Hard work, productivity, routine, conservatism.", coreRev: "Self-discipline, boredom, feeling 'stuck', laziness.", interp: "This Knight is diligent, reliable, and committed to his tasks. It's time to stick to your routine and work methodically towards your goals. While not exciting, this approach guarantees steady progress.", interpRev: "You are feeling bored and stuck in a rut, and your routine has become a cage. A lack of self-discipline may be leading to laziness. It's time to shake things up while maintaining your commitment." },
-    { name: "Queen of Pentacles", core: "Nurturing, practical, providing financially, a working parent.", coreRev: "Financial independence, self-care, work-home conflict.", interp: "You are a nurturing and practical provider, able to create a warm and secure environment for yourself and others. This Queen balances work and home life with grace. You are down-to-earth and generous.", interpRev: "There is a conflict between your work and home life, leaving you feeling drained. It's crucial to practice self-care and not neglect your own needs. You may be striving for more financial independence." },
-    { name: "King of Pentacles", core: "Wealth, business, leadership, security, discipline.", coreRev: "Financially inept, obsessed with wealth, stubbornness.", interp: "You have reached the pinnacle of material success through discipline and sound business acumen. As a leader, you create abundance and security for all around you. Your empire is stable and prosperous.", interpRev: "You are obsessed with wealth and status, or you are being financially irresponsible. Your stubbornness is preventing you from adapting to new circumstances. A leader's success is measured by more than just their bank account." }
+    {
+        name: "The Fool",
+        core: "Beginnings, innocence, spontaneity, free spirit.",
+        coreRev: "Recklessness, holding back, naivete, risk-aversion.",
+        interp: "A new journey is on the horizon, filled with potential and unknown possibilities. Embrace the spontaneity of the moment and trust your instincts. This is a call to take a leap of faith into a new phase of your life.",
+        interpRev:
+            "You may be acting with disregard for the consequences, or conversely, fear is preventing you from starting something new. Re-evaluate the risks before proceeding. Avoid being taken advantage of due to your innocence.",
+    },
+    {
+        name: "The Magician",
+        core: "Manifestation, resourcefulness, power, inspired action.",
+        coreRev: "Manipulation, poor planning, untapped talents, illusion.",
+        interp: "You have all the tools and resources you need to succeed and manifest your desires. It is time to take inspired action and apply your skills with focus and willpower. Your potential for creation is at its peak.",
+        interpRev:
+            "There's a disconnect between your goals and your actions, possibly leading to trickery or wasted potential. Be wary of deception from others or from yourself. Your talents are currently lying dormant and unused.",
+    },
+    {
+        name: "The High Priestess",
+        core: "Intuition, sacred knowledge, divine feminine, the subconscious mind.",
+        coreRev: "Secrets, disconnected from intuition, withdrawal, silence.",
+        interp: "Listen to your inner voice and trust the wisdom that comes from within, as your intuition is your greatest guide now. There are hidden truths and spiritual insights available if you are willing to look beyond the obvious. This card encourages a period of quiet contemplation.",
+        interpRev:
+            "You are ignoring your intuition, leading to confusion and poor judgment. Secrets may be kept from you, or you might be withholding information from others. It's time to reconnect with your inner self.",
+    },
+    {
+        name: "The Empress",
+        core: "Femininity, beauty, nature, nurturing, abundance.",
+        coreRev: "Creative block, dependence on others, smothering, emptiness.",
+        interp: "This card represents a period of creativity, fertility, and abundance in your life. It is time to nurture yourself, your ideas, and your relationships. Connect with nature and embrace the beauty surrounding you.",
+        interpRev:
+            "A creative or emotional block is hindering your growth, or you might be overly dependent on others for validation. Be mindful of smothering those you care for. You may feel a sense of lack or disconnection from your nurturing side.",
+    },
+    {
+        name: "The Emperor",
+        core: "Authority, establishment, structure, a father figure.",
+        coreRev: "Domination, excessive control, rigidity, lack of discipline.",
+        interp: "You are being called to step into a leadership role and bring structure and order to a situation. By creating solid foundations and being disciplined, you can achieve your goals. This card represents stability and strategic thinking.",
+        interpRev:
+            "Your desire for control has become tyrannical, or you are struggling with a lack of self-control and discipline. A rigid approach is stifling creativity and progress. You may be clashing with an authority figure.",
+    },
+    {
+        name: "The Hierophant",
+        core: "Spiritual wisdom, religious beliefs, conformity, tradition, institutions.",
+        coreRev:
+            "Personal beliefs, freedom, challenging the status quo, restriction.",
+        interp: "This is a time for embracing tradition and seeking knowledge from established institutions or a trusted mentor. Following a conventional path can provide valuable structure and spiritual guidance. Conforming to group norms may be beneficial right now.",
+        interpRev:
+            "You are questioning traditions and forging your own path, which can be liberating but also isolating. Be wary of rigid dogma and challenge established rules that no longer serve you. This is a call for spiritual and personal freedom.",
+    },
+    {
+        name: "The Lovers",
+        core: "Love, harmony, relationships, values alignment, choices.",
+        coreRev: "Disharmony, imbalance, misalignment of values, conflict.",
+        interp: "A significant choice regarding a relationship or a deep personal value is before you. This card signifies a beautiful, harmonious connection and the importance of open communication. Your decisions should be based on your authentic self.",
+        interpRev:
+            "You are facing conflict and disharmony in your relationships due to a misalignment of values. A poor choice has led to negative consequences. Re-evaluate your connections and what you truly stand for.",
+    },
+    {
+        name: "The Chariot",
+        core: "Control, willpower, victory, assertion, determination.",
+        coreRev: "Lack of control, lack of direction, aggression, obstacles.",
+        interp: "With determination and focused willpower, you will overcome challenges and achieve victory. You must assert yourself and take control of the opposing forces in your life. This is a time for decisive action and moving forward with confidence.",
+        interpRev:
+            "You are feeling powerless and without direction, as obstacles block your path. Your efforts are scattered and ineffective, or you are being overly aggressive. Regain your focus before you proceed.",
+    },
+    {
+        name: "Strength",
+        core: "Strength, courage, patience, control, compassion.",
+        coreRev: "Weakness, self-doubt, lack of self-control, raw emotion.",
+        interp: "True strength comes not from force, but from courage, compassion, and patience. You have the inner fortitude to gently tame the challenges you face. This card encourages a soft touch and quiet confidence.",
+        interpRev:
+            "Self-doubt and fear are undermining your confidence and causing you to feel weak. You may be acting on raw, uncontrolled emotions. It's time to reconnect with your inner courage and find your power again.",
+    },
+    {
+        name: "The Hermit",
+        core: "Soul-searching, introspection, being alone, inner guidance.",
+        coreRev: "Isolation, loneliness, withdrawal, paranoia.",
+        interp: "It is time to retreat from the outside world for a period of introspection and soul-searching. By turning inward, you will find the answers and inner guidance you seek. This journey of self-discovery is a necessary part of your path.",
+        interpRev:
+            "You have withdrawn too much, leading to feelings of loneliness and isolation. Be careful not to become a recluse. You may be rejecting help or guidance from others out of fear.",
+    },
+    {
+        name: "The Wheel of Fortune",
+        core: "Good luck, karma, life cycles, destiny, a turning point.",
+        coreRev:
+            "Bad luck, resistance to change, breaking cycles, unforeseen setbacks.",
+        interp: "A significant turning point is here, as the wheel of fate spins in your favor. This card signifies change, luck, and the cyclical nature of life. Embrace the new opportunities that are coming your way.",
+        interpRev:
+            "You are experiencing a period of bad luck or facing unexpected setbacks. You may be resisting a necessary change, which is only making things harder. It's time to accept that some things are outside your control.",
+    },
+    {
+        name: "Justice",
+        core: "Justice, fairness, truth, cause and effect, law.",
+        coreRev:
+            "Unfairness, lack of accountability, dishonesty, karmic retribution.",
+        interp: "The truth will be revealed, and fairness will prevail. Your actions have consequences, and this card signifies that you will receive what you deserve. Make decisions with clarity, impartiality, and integrity.",
+        interpRev:
+            "You are experiencing an injustice or are being dishonest with yourself or others. A lack of accountability is causing problems. Be prepared to face the karmic consequences of your past actions.",
+    },
+    {
+        name: "The Hanged Man",
+        core: "Pause, surrender, letting go, new perspectives.",
+        coreRev: "Delays, resistance, stalling, indecision, sacrifice.",
+        interp: "You are being called to pause and see things from a new perspective. By surrendering control and letting go, you will gain valuable insight. This is a time for reflection, not action.",
+        interpRev:
+            "You are resisting a necessary pause, causing stagnation and delays. Your refusal to let go is preventing progress. Indecision is holding you in a state of limbo.",
+    },
+    {
+        name: "Death",
+        core: "Endings, change, transformation, transition.",
+        coreRev:
+            "Resistance to change, personal transformation, inner purging, stagnation.",
+        interp: "A major phase of your life is ending, making way for something new. This card signifies transformation and the necessity of letting go of the past. Embrace this powerful change as it is essential for your growth.",
+        interpRev:
+            "You are resisting an inevitable ending, which is causing you pain and preventing your personal growth. You must let go of what no longer serves you to move forward. Stagnation is the result of clinging to the past.",
+    },
+    {
+        name: "Temperance",
+        core: "Balance, moderation, patience, finding meaning.",
+        coreRev: "Imbalance, excess, self-healing, re-alignment.",
+        interp: "This card represents the need for balance, patience, and moderation in your life. By blending different elements and finding a middle path, you will achieve harmony and peace. You are being guided to find your inner calm.",
+        interpRev:
+            "Your life is out of balance due to excess and a lack of moderation. This is a time for self-healing and re-aligning your priorities. You need to take a step back and find your center.",
+    },
+    {
+        name: "The Devil",
+        core: "Addiction, materialism, playfulness, negative patterns.",
+        coreRev: "Breaking free, release, restoring control, detachment.",
+        interp: "You are feeling trapped by addiction, materialism, or negative thought patterns. This card highlights the chains of your own making that limit your freedom. Acknowledge these bonds in order to address them.",
+        interpRev:
+            "You are on the verge of breaking free from a long-standing addiction or a restrictive situation. This is a powerful time of release and reclaiming your personal power. You are beginning to see the path to freedom.",
+    },
+    {
+        name: "The Tower",
+        core: "Sudden change, upheaval, chaos, revelation, awakening.",
+        coreRev:
+            "Personal transformation, fear of change, averting disaster, resistance.",
+        interp: "A sudden, dramatic upheaval is set to destroy a false reality you have built. While chaotic and unsettling, this destruction makes way for the truth and a new foundation. This is a necessary awakening.",
+        interpRev:
+            "You are resisting a massive change, but the longer you hold on, the more painful it will be. You may have narrowly avoided a disaster, but the underlying issues remain. It's time to tear down your own walls.",
+    },
+    {
+        name: "The Star",
+        core: "Hope, faith, purpose, renewal, spirituality.",
+        coreRev: "Lack of faith, despair, self-trust, disconnection.",
+        interp: "After a period of turmoil, this card brings a sense of hope, healing, and renewal. You are on the right path and should have faith in the future. This is a time for spiritual connection and calm reassurance.",
+        interpRev:
+            "You have lost hope and are feeling disconnected from your purpose, leading to despair. It is crucial to find a way to trust in yourself and the universe again. You are not as lost as you feel.",
+    },
+    {
+        name: "The Moon",
+        core: "Illusion, fear, anxiety, subconscious, intuition.",
+        coreRev:
+            "Release of fear, repressed emotion, inner confusion, clarity.",
+        interp: "Things are not as they seem; you are navigating a world of illusion and uncertainty. Your fears and anxieties may be heightened, fueled by your subconscious mind. Trust your intuition to guide you through this confusing time.",
+        interpRev:
+            "You are beginning to release your fears and see through illusions, bringing newfound clarity. Repressed emotions are coming to the surface to be dealt with. The confusion is starting to lift.",
+    },
+    {
+        name: "The Sun",
+        core: "Positivity, fun, warmth, success, vitality.",
+        coreRev:
+            "Inner child, feeling down, overly optimistic, lack of success.",
+        interp: "This card radiates success, joy, and vitality, promising a period of happiness and clarity. Embrace the warmth and positivity that surrounds you. Your enthusiasm is contagious and will lead to great achievements.",
+        interpRev:
+            "Your optimism may be misplaced, or you are feeling temporarily blocked from joy. It's important to reconnect with your inner child and find simple pleasures. Success may be delayed but not denied.",
+    },
+    {
+        name: "Judgement",
+        core: "Judgement, rebirth, inner calling, absolution.",
+        coreRev:
+            "Self-doubt, inner critic, ignoring the call, fear of judgement.",
+        interp: "You are at a crossroads, and a significant life decision is upon you, representing a form of rebirth. Listen to your inner calling and rise to a new level of consciousness. This is a time for absolution and self-evaluation.",
+        interpRev:
+            "You are plagued by self-doubt and an overly critical inner voice, preventing you from making a necessary change. You are ignoring your true calling out of fear. You must forgive yourself to move forward.",
+    },
+    {
+        name: "The World",
+        core: "Completion, integration, accomplishment, travel.",
+        coreRev:
+            "Seeking personal closure, short-cuts, delays, lack of completion.",
+        interp: "You have successfully completed a major life cycle and are celebrating your accomplishments. This card represents a sense of wholeness, integration, and fulfillment. The world is open to you for new adventures.",
+        interpRev:
+            "You have not fully completed what you started, leaving you with a sense of emptiness. You may have taken shortcuts or are experiencing delays. It's time to tie up loose ends for true closure.",
+    },
+    {
+        name: "Ace of Cups",
+        core: "New love, compassion, creativity, overwhelming emotion.",
+        coreRev: "Blocked or repressed emotions, emotional loss, emptiness.",
+        interp: "A new wave of emotion, creativity, and love is flowing into your life. This is the beginning of a new relationship or a deeper connection with your feelings. Open your heart to the possibilities.",
+        interpRev:
+            "You are blocking your emotions or have recently suffered an emotional setback. There may be a creative block or a feeling of being emotionally unfulfilled. It's time to explore why your cup feels empty.",
+    },
+    {
+        name: "II of Cups",
+        core: "Unified love, partnership, mutual attraction, connection.",
+        coreRev: "Break-up, disharmony, distrust, imbalance in relationship.",
+        interp: "This card represents a deep connection and partnership based on mutual respect and attraction. It signifies the beginning of a beautiful relationship or the strengthening of an existing one. Harmony and shared values are key.",
+        interpRev:
+            "A relationship is suffering from distrust, imbalance, or outright conflict. There is a fundamental disharmony that needs to be addressed. This could signify a difficult break-up or a partnership falling apart.",
+    },
+    {
+        name: "III of Cups",
+        core: "Celebration, friendship, creativity, community.",
+        coreRev: "An affair, gossip, isolation, 'three's a crowd'.",
+        interp: "It's time to celebrate with your friends and community. This card signifies happy gatherings, successful collaborations, and the joy of shared experiences. Your social life is a source of great happiness.",
+        interpRev:
+            "Social interactions are strained, possibly due to gossip or someone feeling left out. There may be an unhealthy dynamic, such as an affair, disrupting the harmony. You may feel isolated from your group.",
+    },
+    {
+        name: "IV of Cups",
+        core: "Meditation, contemplation, apathy, re-evaluation.",
+        coreRev: "Retreat, withdrawal, checking in for alignment, boredom.",
+        interp: "You are being offered new opportunities, but you are too apathetic or distracted to notice them. This is a time for contemplation and re-evaluating what truly makes you happy. Don't let good things pass you by.",
+        interpRev:
+            "After a period of apathy, you are beginning to emerge from your shell and take interest in the world again. You have withdrawn to realign with your true desires. Boredom is giving way to new possibilities.",
+    },
+    {
+        name: "V of Cups",
+        core: "Regret, failure, disappointment, pessimism.",
+        coreRev: "Personal setbacks, self-forgiveness, moving on.",
+        interp: "You are focused on past losses and disappointments, unable to see the positive things that still remain. While it's okay to grieve, this card warns against dwelling in regret. It's time to see the cups that are still full.",
+        interpRev:
+            "You are beginning to forgive yourself and others for past mistakes, allowing you to move on. You've accepted your losses and are now ready to see the opportunities ahead. Healing from regret is possible.",
+    },
+    {
+        name: "VI of Cups",
+        core: "Revisiting the past, childhood memories, innocence, joy.",
+        coreRev: "Living in the past, forgiveness, lacking playfulness.",
+        interp: "This card brings a sense of nostalgia and the joy of simple, innocent pleasures. You may be reconnecting with people or memories from your past. It's a time to embrace your inner child.",
+        interpRev:
+            "You are stuck living in the past, unable to move forward into the future. It may be time to forgive past hurts to release their hold on you. You've lost touch with your playful, joyful side.",
+    },
+    {
+        name: "VII of Cups",
+        core: "Opportunities, choices, wishful thinking, illusion.",
+        coreRev: "Alignment, personal values, overwhelming choices, clarity.",
+        interp: "You are faced with many choices and opportunities, but some may be illusions or wishful thinking. You must look beyond the surface to make a wise decision. Be careful not to get lost in daydreams.",
+        interpRev:
+            "The illusion is fading, and you are gaining clarity on what you truly want. You are aligning your choices with your core values. The overwhelming number of options is narrowing down to a clear path.",
+    },
+    {
+        name: "VIII of Cups",
+        core: "Disappointment, abandonment, withdrawal, escapism.",
+        coreRev: "Trying one more time, indecision, aimless drifting.",
+        interp: "You are walking away from a situation that no longer emotionally fulfills you. While it's difficult, you know it's necessary for your personal growth. This is a journey of seeking deeper meaning.",
+        interpRev:
+            "You are hesitating to leave a disappointing situation, wondering if you should give it one more try. This indecision is causing you to drift aimlessly. You must decide whether to stay or go.",
+    },
+    {
+        name: "IX of Cups",
+        core: "Contentment, satisfaction, gratitude, wish come true.",
+        coreRev: "Smugness, dissatisfaction, materialism, unfulfilled wishes.",
+        interp: "This is the 'wish' card, signifying that your desires are coming to fruition. You are feeling a deep sense of contentment, satisfaction, and gratitude for your blessings. Enjoy this period of emotional and material well-being.",
+        interpRev:
+            "You are feeling dissatisfied, despite having much to be grateful for. Your wishes have not been fulfilled, or you are acting with smugness and materialism. True contentment comes from within, not from possessions.",
+    },
+    {
+        name: "X of Cups",
+        core: "Divine love, blissful relationships, harmony, alignment.",
+        coreRev:
+            "Disconnectedness, misaligned values, struggling relationships.",
+        interp: "This card represents ultimate emotional fulfillment, harmonious family life, and blissful relationships. You are aligned with your values and experiencing true, divine love. This is a picture of 'happily ever after'.",
+        interpRev:
+            "Your family or relationships are experiencing conflict and disconnection. There is a misalignment of values causing struggles and unhappiness. The picture-perfect ideal is not matching your reality.",
+    },
+    {
+        name: "Page of Cups",
+        core: "Creative opportunities, intuitive messages, curiosity, possibility.",
+        coreRev:
+            "New ideas, doubting intuition, creative blocks, emotional immaturity.",
+        interp: "Be open to creative opportunities and intuitive messages that come your way. This card signals a time of curiosity and exploring your emotions. A new, heartfelt message may be on its way.",
+        interpRev:
+            "You are experiencing a creative block or are doubting your own intuition. Emotional immaturity may be causing problems in your relationships. It's time to listen to your heart, even if you feel insecure.",
+    },
+    {
+        name: "Knight of Cups",
+        core: "Creativity, romance, charm, imagination, beauty.",
+        coreRev: "Overactive imagination, unrealistic, jealousy, moodiness.",
+        interp: "A charming and romantic person or offer is entering your life. This is a time for following your heart and expressing your creative impulses. Let yourself be swept away by beauty and imagination.",
+        interpRev:
+            "You are being unrealistic or getting lost in fantasy. Moodiness and jealousy may be creating emotional turmoil. An offer that seems too good to be true probably is.",
+    },
+    {
+        name: "Queen of Cups",
+        core: "Compassionate, caring, emotionally stable, intuitive, in flow.",
+        coreRev:
+            "Emotional insecurity, co-dependency, martyrdom, manipulation.",
+        interp: "You are in touch with your emotions and intuition, acting with compassion and care for others. You are emotionally balanced and a source of comfort for those around you. Trust your heart, for it is a reliable guide.",
+        interpRev:
+            "You are feeling emotionally insecure or are becoming co-dependent in your relationships. Be careful not to play the martyr or manipulate others with your emotions. It's time to set healthy emotional boundaries.",
+    },
+    {
+        name: "King of Cups",
+        core: "Emotionally balanced, compassionate, diplomatic, in control.",
+        coreRev: "Emotional manipulation, moodiness, volatility, selfishness.",
+        interp: "You have mastered your emotions and can navigate any situation with compassion and diplomacy. You are a pillar of emotional strength and stability for others. Your wisdom comes from a perfect balance of heart and mind.",
+        interpRev:
+            "Someone, perhaps you, is using emotional manipulation to control a situation. Moodiness and emotional volatility are causing instability. There is a disconnect between expressed feelings and true intentions.",
+    },
+    {
+        name: "Ace of Swords",
+        core: "Breakthroughs, new ideas, mental clarity, truth.",
+        coreRev:
+            "Confusion, lack of clarity, misinformation, clouded judgment.",
+        interp: "A powerful breakthrough is cutting through confusion, bringing you mental clarity and a new way of thinking. This is a moment of pure truth and intellectual power. Seize this new understanding and use it to your advantage.",
+        interpRev:
+            "You are experiencing confusion and a lack of mental clarity. Misinformation or clouded judgment is preventing you from seeing the truth. It's important to think carefully before making a decision.",
+    },
+    {
+        name: "II of Swords",
+        core: "Difficult choices, indecision, stalemate, blocked emotions.",
+        coreRev:
+            "Indecision, confusion, information overload, emotional turmoil.",
+        interp: "You are facing a difficult choice and are at a stalemate, unable to move forward. You may be blocking your emotions to avoid the truth of the situation. A truce has been called, but the underlying conflict remains.",
+        interpRev:
+            "The stalemate is breaking, but it is leading to more confusion and emotional turmoil. You are overwhelmed with information and cannot make a clear decision. It's time to remove the blindfold and face your feelings.",
+    },
+    {
+        name: "III of Swords",
+        core: "Heartbreak, emotional pain, sorrow, grief, hurt.",
+        coreRev: "Negative self-talk, releasing pain, optimism, forgiveness.",
+        interp: "This card signifies a painful truth that leads to heartbreak, sorrow, and grief. While deeply painful, this clarity is necessary for healing to begin. Acknowledge your pain to move through it.",
+        interpRev:
+            "You are beginning to recover from a painful experience, releasing the sorrow and forgiving those involved. Be wary of negative self-talk that prolongs the hurt. The worst of the pain is behind you now.",
+    },
+    {
+        name: "IV of Swords",
+        core: "Rest, relaxation, meditation, contemplation, recuperation.",
+        coreRev: "Exhaustion, burn-out, deep contemplation, stagnation.",
+        interp: "It is time to rest, recuperate, and recharge your mental batteries. This card calls for a period of peace and quiet contemplation after a period of stress. Stepping back will give you the clarity you need.",
+        interpRev:
+            "You have pushed yourself to the point of exhaustion and burnout. A lack of rest is leading to stagnation and poor mental health. You must take a break before you collapse.",
+    },
+    {
+        name: "V of Swords",
+        core: "Conflict, competition, defeat, winning at all costs.",
+        coreRev: "Reconciliation, making amends, past resentment, remorse.",
+        interp: "This card signifies a conflict where victory comes at a great cost, leaving a bitter taste. You may have won the battle but lost the war, creating resentment and damaged relationships. There are no true winners here.",
+        interpRev:
+            "You are seeking reconciliation and are ready to make amends after a painful conflict. Releasing past resentments is key to moving forward. There is remorse for the hurt that has been caused.",
+    },
+    {
+        name: "VI of Swords",
+        core: "Transition, change, rite of passage, releasing baggage.",
+        coreRev:
+            "Personal transition, resistance to change, unfinished business.",
+        interp: "You are moving away from a difficult past into a calmer, more hopeful future. This is a necessary transition, even if it is accompanied by sadness. You are leaving your troubles behind.",
+        interpRev:
+            "You are resisting a necessary transition, clinging to the past and its baggage. There is unfinished business that is preventing you from moving on. The journey ahead feels uncertain and difficult.",
+    },
+    {
+        name: "VII of Swords",
+        core: "Betrayal, deception, getting away with something, stealth.",
+        coreRev: "Imposter syndrome, deceiving yourself, keeping secrets.",
+        interp: "This card warns of deception, betrayal, or trying to get away with something dishonestly. Someone may be acting behind your back, or you may be the one acting with stealth. This path is risky and often leads to isolation.",
+        interpRev:
+            "You are deceiving yourself about a situation or are suffering from imposter syndrome. Keeping secrets is taking a toll on your mental health. It's time to come clean and be honest with yourself and others.",
+    },
+    {
+        name: "VIII of Swords",
+        core: "Negative thoughts, self-imposed restriction, imprisonment, victim mentality.",
+        coreRev: "Self-belief, new perspectives, release, freedom.",
+        interp: "You feel trapped and powerless, but the restrictions are self-imposed by your own negative thoughts and beliefs. You have the power to free yourself by changing your perspective. You are not as helpless as you think.",
+        interpRev:
+            "You are beginning to challenge your limiting beliefs and see a way out of your perceived prison. A new perspective is bringing you a sense of freedom and release. You are reclaiming your power.",
+    },
+    {
+        name: "IX of Swords",
+        core: "Anxiety, worry, fear, depression, nightmares.",
+        coreRev: "Inner turmoil, deep-seated fears, secrets, releasing worry.",
+        interp: "This card is the 'nightmare' card, representing deep anxiety, fear, and worry that keeps you up at night. These fears are often exaggerated by your mind. It is time to seek help and talk about what is troubling you.",
+        interpRev:
+            "You are beginning to confront the deep-seated fears that have been tormenting you. Releasing these worries is a difficult but necessary process. The darkest hour is just before the dawn.",
+    },
+    {
+        name: "X of Swords",
+        core: "Painful endings, deep wounds, betrayal, loss, crisis.",
+        coreRev: "Recovery, regeneration, resisting an end, forgiveness.",
+        interp: "You have hit rock bottom after a painful ending or betrayal. While this is a moment of crisis and deep wounds, it also signifies that the worst is over. There is nowhere to go but up from here.",
+        interpRev:
+            "The process of recovery and regeneration has begun after a devastating loss. You are slowly healing from your wounds. However, resisting this ending will only prolong the pain.",
+    },
+    {
+        name: "Page of Swords",
+        core: "New ideas, curiosity, thirst for knowledge, new ways of communicating.",
+        coreRev:
+            "Self-expression, all talk and no action, haste, misinformation.",
+        interp: "You are full of new ideas and a thirst for knowledge. This card encourages you to ask questions, learn new things, and communicate your thoughts with energy and enthusiasm. Be curious and explore your intellectual world.",
+        interpRev:
+            "You may be all talk and no action, or you are spreading misinformation without fact-checking. Your haste in communication could lead to misunderstandings. It's time to think before you speak.",
+    },
+    {
+        name: "Knight of Swords",
+        core: "Ambitious, action-oriented, fast-thinking, direct.",
+        coreRev: "Restless, unfocused, impulsive, burn-out, aggressive.",
+        interp: "This Knight is on a mission, charging forward with ambition and intellectual clarity. It's time for swift, decisive action based on a well-thought-out plan. Be direct and assertive in pursuing your goals.",
+        interpRev:
+            "Your energy is scattered and unfocused, leading to impulsive and reckless actions. You are charging ahead without a clear plan, which could lead to burnout. Your directness may be perceived as aggression.",
+    },
+    {
+        name: "Queen of Swords",
+        core: "Independent, unbiased judgement, clear boundaries, direct communication.",
+        coreRev: "Overly-emotional, easily influenced, bitchy, cold-hearted.",
+        interp: "You possess sharp intellect and can make unbiased judgments based on facts. This card represents independence, clear boundaries, and direct, honest communication. You use your wisdom to cut through the noise and find the truth.",
+        interpRev:
+            "Your judgment is clouded by emotion, or you are being cold-hearted and cruel with your words. You may be easily influenced by others' opinions. It's important to find the balance between head and heart.",
+    },
+    {
+        name: "King of Swords",
+        core: "Mental clarity, intellectual power, authority, truth.",
+        coreRev: "Quiet power, inner truth, misuse of power, manipulation.",
+        interp: "You are an authority figure who rules with intellectual power and clarity. Your decisions are based on logic, truth, and ethical judgment. You are a master of thought and communication, commanding respect.",
+        interpRev:
+            "You are misusing your intellectual power for manipulation or selfish gain. Your words may be cutting and tyrannical. It is time to reconnect with your inner truth and use your authority wisely.",
+    },
+    {
+        name: "Ace of Wands",
+        core: "Inspiration, new opportunities, growth, potential.",
+        coreRev: "An emerging idea, lack of direction, delays, hesitation.",
+        interp: "A spark of inspiration has arrived, bringing with it a new opportunity for growth and creativity. This is a moment of pure potential, a call to action. Seize this new passion and run with it.",
+        interpRev:
+            "You have a new idea, but you are hesitating to act on it due to a lack of direction or delays. Your passion is being stifled. It's time to overcome your hesitation and give your idea a chance to grow.",
+    },
+    {
+        name: "II of Wands",
+        core: "Future planning, progress, decisions, discovery.",
+        coreRev: "Fear of unknown, lack of planning, personal goals.",
+        interp: "You have made progress and are now planning your next steps. This card is about looking to the future and making bold decisions about your path. You are expanding your horizons and discovering new worlds.",
+        interpRev:
+            "Fear of the unknown is preventing you from moving forward with your plans. A lack of planning is holding you back. It's time to focus on your personal goals and take that first step.",
+    },
+    {
+        name: "III of Wands",
+        core: "Progress, expansion, foresight, overseas opportunities.",
+        coreRev: "Playing small, lack of foresight, unexpected delays.",
+        interp: "Your plans are in motion, and you are starting to see the first signs of success. This card encourages you to think bigger and look for opportunities for expansion, possibly overseas. Your foresight is paying off.",
+        interpRev:
+            "You are playing small and not living up to your full potential. Unexpected delays or a lack of foresight are frustrating your progress. It's time to think about long-term growth.",
+    },
+    {
+        name: "IV of Wands",
+        core: "Celebration, joy, harmony, relaxation, homecoming.",
+        coreRev: "Personal celebration, inner harmony, conflict with others.",
+        interp: "This card signifies a time of joyful celebration, harmony, and stability, often related to a happy home or a significant milestone. It's a time to relax and enjoy the fruits of your labor with loved ones. Welcome home.",
+        interpRev:
+            "There is a lack of harmony in your home or community, possibly due to conflict. You may be celebrating a personal achievement alone. It's important to find your own inner sense of stability and peace.",
+    },
+    {
+        name: "V of Wands",
+        core: "Conflict, disagreements, competition, tension.",
+        coreRev: "Conflict avoidance, diversity, releasing tension.",
+        interp: "You are in the midst of conflict, competition, and disagreements. While there is tension, it's not necessarily destructive; it can be a source of creative energy and growth. It's time to voice your opinion and stand up for your ideas.",
+        interpRev:
+            "You are avoiding a necessary conflict, which is only making the tension worse. It's time to find a way to work with diverse opinions rather than against them. Releasing this tension is crucial for progress.",
+    },
+    {
+        name: "VI of Wands",
+        core: "Public recognition, victory, success, self-confidence.",
+        coreRev: "Private achievement, fall from grace, egotism.",
+        interp: "You have achieved a significant victory and are receiving public recognition for your efforts. This is a moment of success, pride, and well-deserved acclaim. Your self-confidence is at a high point.",
+        interpRev:
+            "Your success has not been publicly acknowledged, or you are celebrating a private victory. Be wary of egotism and a potential fall from grace. True confidence comes from within, not from external praise.",
+    },
+    {
+        name: "VII of Wands",
+        core: "Challenge, competition, perseverance, standing up for beliefs.",
+        coreRev: "Giving up, overwhelmed, overly defensive, yielding.",
+        interp: "You are being challenged, but you are in a position of strength. It is time to stand your ground, defend your beliefs, and persevere against the competition. Don't back down from this fight.",
+        interpRev:
+            "You are feeling overwhelmed and are on the verge of giving up. You may be overly defensive or are yielding your position too easily. It's time to re-evaluate your strategy and find your courage.",
+    },
+    {
+        name: "VIII of Wands",
+        core: "Rapid action, movement, quick decisions, air travel.",
+        coreRev: "Delays, frustration, resisting change, slowing down.",
+        interp: "Things are moving forward at a rapid pace. This card signifies swift action, important news, and perhaps even travel. Be prepared to make quick decisions and go with the flow of this powerful energy.",
+        interpRev:
+            "You are experiencing frustrating delays and obstacles. You may be resisting a necessary change, which is only slowing things down. It's time to be patient and wait for the right moment to act.",
+    },
+    {
+        name: "IX of Wands",
+        core: "Resilience, courage, persistence, test of faith, boundaries.",
+        coreRev: "Inner resources, struggle, overwhelm, defensive, paranoia.",
+        interp: "You have been through many battles and are weary, but you still have the resilience to face one final challenge. This is a test of your faith and courage. Guard your boundaries and don't give up now; you are so close to the finish line.",
+        interpRev:
+            "You are feeling overwhelmed and on the verge of collapse, struggling to find the strength to continue. Your defensiveness may be bordering on paranoia. You must dig deep and tap into your inner resources.",
+    },
+    {
+        name: "X of Wands",
+        core: "Burden, extra responsibility, hard work, stress, completion.",
+        coreRev: "Delegating, release, carrying the burden, letting go.",
+        interp: "You have taken on too much responsibility and are carrying a heavy burden. While this signifies the completion of a cycle, it comes with a great deal of stress and hard work. You are nearing the end of this difficult task.",
+        interpRev:
+            "You are learning to delegate and release the burdens you've been carrying. It's time to let go of responsibilities that are not yours. Acknowledging that you can't do it all is the first step to relief.",
+    },
+    {
+        name: "Page of Wands",
+        core: "Enthusiasm, exploration, discovery, free spirit.",
+        coreRev: "Lack of direction, procrastination, creating conflict.",
+        interp: "A free-spirited energy of enthusiasm and exploration is here. This card encourages you to discover new passions and embrace your creative spark. Be open to new adventures and a sense of wonder.",
+        interpRev:
+            "You are full of creative energy but lack the direction to use it effectively, leading to procrastination. You might be stirring up conflict out of boredom. It's time to find a focus for your passion.",
+    },
+    {
+        name: "Knight of Wands",
+        core: "Energy, passion, lust, action, adventure, impulsiveness.",
+        coreRev: "Haste, scattered energy, frustration, delays.",
+        interp: "This Knight brings a wave of passionate energy, action, and adventure. It's time to pursue your goals with vigor and enthusiasm, but be mindful of impulsiveness. A journey or a bold move is on the horizon.",
+        interpRev:
+            "Your impulsive energy is scattered, leading to frustration and delays. You are acting with haste and without a clear plan. It's time to slow down and channel your passion more effectively.",
+    },
+    {
+        name: "Queen of Wands",
+        core: "Courage, confidence, independence, social butterfly, determination.",
+        coreRev: "Self-respect, self-confidence, introverted, a burnout.",
+        interp: "You are a confident, courageous, and determined leader with a vibrant social energy. This Queen encourages you to be independent and shine your light brightly. Your passion and optimism are inspiring to others.",
+        interpRev:
+            "You are feeling insecure or have lost your confidence, perhaps due to burnout. It may be a time for introversion and focusing on rebuilding your self-respect. Your inner fire needs to be rekindled.",
+    },
+    {
+        name: "King of Wands",
+        core: "Natural-born leader, vision, entrepreneur, honour.",
+        coreRev: "Impulsiveness, haste, ruthless, high expectations.",
+        interp: "You are a visionary leader who inspires others to follow your lead. This King has the creativity and determination to turn his vision into reality. It is time to take charge and lead with honour and passion.",
+        interpRev:
+            "Your leadership has become ruthless, or your high expectations are unrealistic. Impulsive and hasty decisions are leading to poor outcomes. You must lead with more consideration and less force.",
+    },
+    {
+        name: "Ace of Pentacles",
+        core: "New financial or career opportunity, manifestation, prosperity.",
+        coreRev: "Lost opportunity, lack of planning, greed, missed chance.",
+        interp: "A seed of prosperity has been planted, offering a new opportunity for financial growth or career advancement. This is a time for manifestation and building a secure future. Ground your ambitions in reality to make them flourish.",
+        interpRev:
+            "You have missed a valuable opportunity due to a lack of planning or foresight. Be wary of making decisions based on greed. It is not too late to create a new plan for future success.",
+    },
+    {
+        name: "II of Pentacles",
+        core: "Multiple priorities, time management, adaptability, balance.",
+        coreRev: "Over-committed, disorganisation, reprioritising.",
+        interp: "You are juggling multiple priorities and need to manage your time and resources effectively. This card calls for adaptability and finding balance in a busy life. Stay flexible to keep all your plates spinning.",
+        interpRev:
+            "You are over-committed and feeling disorganized, causing you to drop the ball. It's time to re-prioritize and focus on what is truly important. You cannot do everything at once.",
+    },
+    {
+        name: "III of Pentacles",
+        core: "Teamwork, collaboration, learning, implementation.",
+        coreRev:
+            "Disharmony, misalignment, working alone, lack of collaboration.",
+        interp: "This card signifies successful collaboration and teamwork. By combining your skills with others, you can create something of high quality and lasting value. It is also a time for learning and honing your craft.",
+        interpRev:
+            "There is disharmony and a lack of collaboration within your team, hindering progress. You may feel that you have to do everything yourself. Misalignment of goals is causing friction.",
+    },
+    {
+        name: "IV of Pentacles",
+        core: "Saving money, security, control, conservatism, scarcity mindset.",
+        coreRev: "Over-spending, greed, self-protection, releasing control.",
+        interp: "You are holding on tightly to your resources out of a need for security and control. While saving is wise, be careful of a scarcity mindset that prevents you from enjoying your wealth. You may be too resistant to change.",
+        interpRev:
+            "You are releasing your tight grip on control, which can be both liberating and terrifying. This may manifest as over-spending or generosity after a period of conservation. Letting go is a necessary step for growth.",
+    },
+    {
+        name: "V of Pentacles",
+        core: "Financial loss, poverty, isolation, worry, insecurity.",
+        coreRev: "Recovery from financial loss, spiritual poverty.",
+        interp: "You are experiencing a period of financial hardship, worry, and isolation. You feel left out in the cold, but help is often closer than you think. Don't be afraid to ask for support during this difficult time.",
+        interpRev:
+            "You are beginning to recover from a period of financial loss and instability. The worst is behind you, and you are finding your way back to security. This card can also point to a poverty of spirit that needs healing.",
+    },
+    {
+        name: "VI of Pentacles",
+        core: "Giving, receiving, sharing wealth, generosity, charity.",
+        coreRev:
+            "Self-care, unpaid debts, one-sided charity, strings attached.",
+        interp: "This card represents a harmonious flow of giving and receiving. It can signify receiving a gift or being in a position to be generous with others. Charity and sharing your wealth will bring balance.",
+        interpRev:
+            "The balance of giving and receiving is off. You may be giving too much, or a gift may come with strings attached. Be wary of unpaid debts, both financial and emotional.",
+    },
+    {
+        name: "VII of Pentacles",
+        core: "Long-term view, sustainable results, perseverance, investment.",
+        coreRev: "Lack of long-term vision, limited success or reward.",
+        interp: "You are taking a moment to assess the progress of your long-term investments. Your hard work is beginning to pay off, but patience is still required. Continue to persevere, for sustainable results are on the horizon.",
+        interpRev:
+            "Your investments are not yielding the results you hoped for, perhaps due to a lack of a long-term vision. You may be frustrated with limited success. It's time to re-evaluate your strategy for the future.",
+    },
+    {
+        name: "VIII of Pentacles",
+        core: "Apprenticeship, repetitive tasks, mastery, skill development.",
+        coreRev: "Self-development, perfectionism, misdirected activity.",
+        interp: "You are diligently working on developing your skills and mastering your craft. This card celebrates the focus and dedication required to become an expert. Your hard work and attention to detail will lead to high-quality results.",
+        interpRev:
+            "You are working hard, but your efforts may be misdirected. Perfectionism could be hindering your progress rather than helping it. It's a good time to focus on your own self-development.",
+    },
+    {
+        name: "IX of Pentacles",
+        core: "Abundance, luxury, self-sufficiency, financial independence.",
+        coreRev: "Self-worth, over-working, financial dependency.",
+        interp: "You have worked hard to achieve a level of financial independence and can now enjoy the fruits of your labor. This card signifies luxury, self-sufficiency, and enjoying the finer things in life. You have earned this abundance.",
+        interpRev:
+            "You may be working so hard that you have no time to enjoy your success, or you may be financially dependent on others. Your sense of self-worth is not tied to your financial status. Find a healthier work-life balance.",
+    },
+    {
+        name: "X of Pentacles",
+        core: "Wealth, financial security, family, long-term success, contribution.",
+        coreRev: "Financial failure or loss, loneliness, instability.",
+        interp: "This card represents the ultimate in long-term success, financial security, and a lasting legacy. You have built something of enduring value for your family and community. Your wealth is not just material but also relational.",
+        interpRev:
+            "You are facing financial instability or the loss of a family legacy. There is a breakdown in the long-term structures you relied upon. This may be a time of loneliness and insecurity.",
+    },
+    {
+        name: "Page of Pentacles",
+        core: "Manifestation, financial opportunity, skill development.",
+        coreRev: "Lack of progress, procrastination, learn from failure.",
+        interp: "A new opportunity to manifest your goals in the material world is presenting itself. This card encourages you to be diligent and grounded in your approach to learning new skills. Your ambition is a seed ready to be planted.",
+        interpRev:
+            "You are experiencing a lack of progress due to procrastination or a fear of failure. It is important to learn from your mistakes and not let them stop you. A new plan is needed to get things moving.",
+    },
+    {
+        name: "Knight of Pentacles",
+        core: "Hard work, productivity, routine, conservatism.",
+        coreRev: "Self-discipline, boredom, feeling 'stuck', laziness.",
+        interp: "This Knight is diligent, reliable, and committed to his tasks. It's time to stick to your routine and work methodically towards your goals. While not exciting, this approach guarantees steady progress.",
+        interpRev:
+            "You are feeling bored and stuck in a rut, and your routine has become a cage. A lack of self-discipline may be leading to laziness. It's time to shake things up while maintaining your commitment.",
+    },
+    {
+        name: "Queen of Pentacles",
+        core: "Nurturing, practical, providing financially, a working parent.",
+        coreRev: "Financial independence, self-care, work-home conflict.",
+        interp: "You are a nurturing and practical provider, able to create a warm and secure environment for yourself and others. This Queen balances work and home life with grace. You are down-to-earth and generous.",
+        interpRev:
+            "There is a conflict between your work and home life, leaving you feeling drained. It's crucial to practice self-care and not neglect your own needs. You may be striving for more financial independence.",
+    },
+    {
+        name: "King of Pentacles",
+        core: "Wealth, business, leadership, security, discipline.",
+        coreRev: "Financially inept, obsessed with wealth, stubbornness.",
+        interp: "You have reached the pinnacle of material success through discipline and sound business acumen. As a leader, you create abundance and security for all around you. Your empire is stable and prosperous.",
+        interpRev:
+            "You are obsessed with wealth and status, or you are being financially irresponsible. Your stubbornness is preventing you from adapting to new circumstances. A leader's success is measured by more than just their bank account.",
+    },
 ];
 
-document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('searchInput');
-    const tableBody = document.getElementById('tableBody');
-    const cardDetailsContainer = document.getElementById('card-details-container');
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("searchInput");
+    const tableBody = document.getElementById("tableBody");
+    const cardDetailsContainer = document.getElementById(
+        "card-details-container"
+    );
 
     function populateTable(data) {
-        tableBody.innerHTML = '';
+        tableBody.innerHTML = "";
         if (data.length === 0) {
-             tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 40px; color: #777;">No cards match your search.</td></tr>';
-             return;
+            tableBody.innerHTML =
+                '<tr><td colspan="5" style="text-align:center; padding: 40px; color: #777;">No cards match your search.</td></tr>';
+            return;
         }
-        
-        data.forEach(card => {
-            const row = document.createElement('tr');
+
+        data.forEach((card) => {
+            const row = document.createElement("tr");
             row.innerHTML = `
                 <td>${card.name}</td>
                 <td>${card.core}</td>
@@ -105,23 +672,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function populateCardDetails(data) {
-        cardDetailsContainer.innerHTML = '';
+        cardDetailsContainer.innerHTML = "";
         if (data.length === 0) {
             return;
         }
 
         const createCopyButton = () => {
-            const button = document.createElement('button');
-            button.textContent = 'Copy to Clipboard';
-            button.classList.add('copy-btn');
+            const button = document.createElement("button");
+            button.textContent = "Copy to Clipboard";
+            button.classList.add("copy-btn");
             return button;
         };
 
         cardDetailsContainer.appendChild(createCopyButton());
 
         data.forEach((card, index) => {
-            const detailDiv = document.createElement('div');
-            detailDiv.classList.add('card-detail');
+            const detailDiv = document.createElement("div");
+            detailDiv.classList.add("card-detail");
             detailDiv.dataset.cardName = card.name;
             detailDiv.innerHTML = `
                 <h3>${index + 1}. ${card.name}</h3>
@@ -136,39 +703,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function filterData() {
         const query = searchInput.value.toLowerCase().trim();
-        
+
         if (!query) {
             populateTable(tarotData);
             populateCardDetails(tarotData);
             return;
         }
 
-        const searchTerms = query.split(',').map(term => term.trim()).filter(term => term.length > 0);
+        const searchTerms = query
+            .split(",")
+            .map((term) => term.trim())
+            .filter((term) => term.length > 0);
 
         if (searchTerms.length === 0) {
-             populateTable(tarotData);
-             populateCardDetails(tarotData);
-             return;
+            populateTable(tarotData);
+            populateCardDetails(tarotData);
+            return;
         }
 
         const filteredData = [];
         const addedCardNames = new Set();
 
-        searchTerms.forEach(term => {
-            const foundCard = tarotData.find(card => {
+        searchTerms.forEach((term) => {
+            const foundCard = tarotData.find((card) => {
                 if (addedCardNames.has(card.name)) {
                     return false;
                 }
 
                 const cardNameLower = card.name.toLowerCase();
-                const termWords = term.split(/\s+/).filter(w => w.length > 0);
+                const termWords = term.split(/\s+/).filter((w) => w.length > 0);
 
                 if (termWords.length === 0) return false;
 
-                return termWords.every(word => {
+                return termWords.every((word) => {
                     const isRoman = /^[ivx]+$/.test(word);
                     if (isRoman) {
-                        const regex = new RegExp('\\b' + word + '\\b');
+                        const regex = new RegExp("\\b" + word + "\\b");
                         return regex.test(cardNameLower);
                     } else {
                         return cardNameLower.includes(word);
@@ -186,19 +756,24 @@ document.addEventListener('DOMContentLoaded', () => {
         populateCardDetails(filteredData);
     }
 
-    cardDetailsContainer.addEventListener('click', (e) => {
-        if (e.target.classList.contains('copy-btn')) {
-            let textToCopy = '';
-            const details = cardDetailsContainer.querySelectorAll('.card-detail');
+    cardDetailsContainer.addEventListener("click", (e) => {
+        if (e.target.classList.contains("copy-btn")) {
+            let textToCopy = "";
+            const details =
+                cardDetailsContainer.querySelectorAll(".card-detail");
             details.forEach((detail, index) => {
-                const title = detail.querySelector('h3').textContent.trim();
-                const meaning = detail.querySelector('p:nth-of-type(1)').textContent.trim();
-                const stock = detail.querySelector('p:nth-of-type(2)').textContent.trim();
+                const title = detail.querySelector("h3").textContent.trim();
+                const meaning = detail
+                    .querySelector("p:nth-of-type(1)")
+                    .textContent.trim();
+                const stock = detail
+                    .querySelector("p:nth-of-type(2)")
+                    .textContent.trim();
                 textToCopy += `${title}\n${meaning}\n${stock}\n\n`;
             });
             navigator.clipboard.writeText(textToCopy.trim()).then(() => {
                 const originalText = e.target.textContent;
-                e.target.textContent = 'Copied!';
+                e.target.textContent = "Copied!";
                 setTimeout(() => {
                     e.target.textContent = originalText;
                 }, 2000);
@@ -206,27 +781,39 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const cardDetailDiv = e.target.closest('.card-detail');
+        const cardDetailDiv = e.target.closest(".card-detail");
         if (!cardDetailDiv) return;
 
         const cardName = cardDetailDiv.dataset.cardName;
-        const card = tarotData.find(c => c.name === cardName);
-        const h3 = cardDetailDiv.querySelector('h3');
-        const isReversed = h3.textContent.includes('(Reversed)');
+        const card = tarotData.find((c) => c.name === cardName);
+        const h3 = cardDetailDiv.querySelector("h3");
+        const isReversed = h3.textContent.includes("(Reversed)");
 
         if (isReversed) {
-            const originalName = h3.textContent.replace(' (Reversed)', '').split('. ')[1];
-            h3.innerHTML = `${Array.from(cardDetailDiv.parentNode.children).indexOf(cardDetailDiv)}. ${originalName}`;
-            cardDetailDiv.querySelector('p:nth-of-type(1)').innerHTML = `<strong>Meaning:</strong> ${card.core}`;
-            cardDetailDiv.querySelector('p:nth-of-type(2)').innerHTML = `<strong>Stock:</strong> ${card.interp}`;
+            const originalName = h3.textContent
+                .replace(" (Reversed)", "")
+                .split(". ")[1];
+            h3.innerHTML = `${Array.from(
+                cardDetailDiv.parentNode.children
+            ).indexOf(cardDetailDiv)}. ${originalName}`;
+            cardDetailDiv.querySelector(
+                "p:nth-of-type(1)"
+            ).innerHTML = `<strong>Meaning:</strong> ${card.core}`;
+            cardDetailDiv.querySelector(
+                "p:nth-of-type(2)"
+            ).innerHTML = `<strong>Stock:</strong> ${card.interp}`;
         } else {
-            h3.textContent += ' (Reversed)';
-            cardDetailDiv.querySelector('p:nth-of-type(1)').innerHTML = `<strong>Meaning:</strong> ${card.coreRev}`;
-            cardDetailDiv.querySelector('p:nth-of-type(2)').innerHTML = `<strong>Stock:</strong> ${card.interpRev}`;
+            h3.textContent += " (Reversed)";
+            cardDetailDiv.querySelector(
+                "p:nth-of-type(1)"
+            ).innerHTML = `<strong>Meaning:</strong> ${card.coreRev}`;
+            cardDetailDiv.querySelector(
+                "p:nth-of-type(2)"
+            ).innerHTML = `<strong>Stock:</strong> ${card.interpRev}`;
         }
     });
 
-    searchInput.addEventListener('input', filterData);
+    searchInput.addEventListener("input", filterData);
 
     populateTable(tarotData);
     populateCardDetails(tarotData);
