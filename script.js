@@ -82,6 +82,7 @@ const tarotData = [
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const tableBody = document.getElementById('tableBody');
+    const cardDetailsContainer = document.getElementById('card-details-container');
 
     function populateTable(data) {
         tableBody.innerHTML = '';
@@ -103,11 +104,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function populateCardDetails(data) {
+        cardDetailsContainer.innerHTML = '';
+        if (data.length === 0) {
+            return;
+        }
+
+        data.forEach((card, index) => {
+            const detailDiv = document.createElement('div');
+            detailDiv.classList.add('card-detail');
+            detailDiv.dataset.cardName = card.name;
+            detailDiv.innerHTML = `
+                <h3>${index + 1}. ${card.name}</h3>
+                <p><strong>Meaning:</strong> ${card.core}</p>
+                <p><strong>Stock:</strong> ${card.interp}</p>
+            `;
+            cardDetailsContainer.appendChild(detailDiv);
+        });
+    }
+
     function filterData() {
         const query = searchInput.value.toLowerCase().trim();
         
         if (!query) {
             populateTable(tarotData);
+            populateCardDetails(tarotData);
             return;
         }
 
@@ -115,6 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (searchTerms.length === 0) {
              populateTable(tarotData);
+             populateCardDetails(tarotData);
              return;
         }
 
@@ -150,9 +172,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         populateTable(filteredData);
+        populateCardDetails(filteredData);
     }
+
+    cardDetailsContainer.addEventListener('click', (e) => {
+        const cardDetailDiv = e.target.closest('.card-detail');
+        if (!cardDetailDiv) return;
+
+        const cardName = cardDetailDiv.dataset.cardName;
+        const card = tarotData.find(c => c.name === cardName);
+        const h3 = cardDetailDiv.querySelector('h3');
+        const isReversed = h3.textContent.includes('(Reversed)');
+
+        if (isReversed) {
+            h3.textContent = h3.textContent.replace(' (Reversed)', '');
+            cardDetailDiv.querySelector('p:nth-of-type(1)').innerHTML = `<strong>Meaning:</strong> ${card.core}`;
+            cardDetailDiv.querySelector('p:nth-of-type(2)').innerHTML = `<strong>Stock:</strong> ${card.interp}`;
+        } else {
+            h3.textContent += ' (Reversed)';
+            cardDetailDiv.querySelector('p:nth-of-type(1)').innerHTML = `<strong>Meaning:</strong> ${card.coreRev}`;
+            cardDetailDiv.querySelector('p:nth-of-type(2)').innerHTML = `<strong>Stock:</strong> ${card.interpRev}`;
+        }
+    });
 
     searchInput.addEventListener('input', filterData);
 
     populateTable(tarotData);
+    populateCardDetails(tarotData);
 });
