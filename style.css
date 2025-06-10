@@ -38,6 +38,27 @@ h1 {
 
 .search-container {
     margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+#randomButton {
+    padding: 15px 20px;
+    font-family: "Quicksand", sans-serif;
+    font-size: 1.1rem;
+    background-color: #03dac6;
+    border: 1px solid #03dac6;
+    color: #121212;
+    border-radius: 8px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    font-weight: 700;
+}
+
+#randomButton:hover {
+    background-color: #018786;
+    border-color: #018786;
 }
 
 #searchInput {

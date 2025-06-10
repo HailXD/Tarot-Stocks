@@ -644,10 +644,12 @@ const tarotData = [
 ];
 document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("searchInput");
+    const randomButton = document.getElementById("randomButton");
     const tableBody = document.getElementById("tableBody");
     const cardDetailsContainer = document.getElementById(
         "card-details-container"
     );
+    let randomButtonPressed = false;
 
     function populateTable(data) {
         tableBody.innerHTML = "";
@@ -687,10 +689,19 @@ document.addEventListener("DOMContentLoaded", () => {
             const detailDiv = document.createElement("div");
             detailDiv.classList.add("card-detail");
             detailDiv.dataset.cardName = card.name;
+
+            const isReversed = randomButtonPressed && Math.random() > 0.8;
+
             detailDiv.innerHTML = `
-                <h3>${index + 1}. ${card.name}</h3>
-                <p><strong>Meaning:</strong> ${card.core}</p>
-                <p><strong>Stock:</strong> ${card.interp}</p>
+                <h3>${index + 1}. ${card.name}${
+                isReversed ? " (Reversed)" : ""
+            }</h3>
+                <p><strong>Meaning:</strong> ${
+                    isReversed ? card.coreRev : card.core
+                }</p>
+                <p><strong>Stock:</strong> ${
+                    isReversed ? card.interpRev : card.interp
+                }</p>
             `;
             cardDetailsContainer.appendChild(detailDiv);
         });
@@ -709,6 +720,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!query) {
             populateTable(tarotData);
             populateCardDetails(tarotData);
+            randomButtonPressed = false;
             return;
         }
 
@@ -830,6 +842,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     searchInput.addEventListener("input", filterData);
+
+    randomButton.addEventListener("click", () => {
+        randomButtonPressed = true;
+        const shuffled = tarotData.sort(() => 0.5 - Math.random());
+        const selected = shuffled.slice(0, 5);
+        searchInput.value = selected.map((c) => c.name).join(", ");
+        filterData();
+    });
 
     populateTable(tarotData);
     populateCardDetails(tarotData);
